@@ -537,6 +537,446 @@
       letter-spacing: 1rem;
       opacity: 0.5;
     }
+
+
+    /* RESPONSIVE FIXES */
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a, button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    @media (max-width: 1180px) {
+      nav {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      .hero-left,
+      .section-intro,
+      .section-bieres,
+      .section-process,
+      .page-hero-content,
+      .histoire-intro,
+      .timeline,
+      .founders,
+      .valeurs,
+      .bieres-intro,
+      .filter-bar,
+      .bieres-showcase,
+      .pairing,
+      .cta-section,
+      footer {
+        padding-left: 3rem;
+        padding-right: 3rem;
+      }
+
+      .section-intro,
+      .bieres-intro,
+      .biere-feature {
+        gap: 3rem;
+      }
+
+      .pairing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .banner {
+        padding: 0.8rem 1rem;
+        font-size: 0.6rem;
+        letter-spacing: 0.22em;
+        line-height: 1.6;
+      }
+
+      nav {
+        position: sticky;
+        top: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+      }
+
+      .nav-logo {
+        font-size: 1.35rem;
+        letter-spacing: 0.22em;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.8rem 1.2rem;
+      }
+
+      .nav-links a {
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left {
+        padding: 5rem 2rem 3rem;
+        text-align: center;
+        align-items: center;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 12vw, 4.8rem);
+      }
+
+      .hero-desc {
+        max-width: 620px;
+      }
+
+      .hero-cta {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-ornament,
+      .scroll-line {
+        display: none;
+      }
+
+      .hero-right {
+        min-height: 45vh;
+      }
+
+      .hero-right img {
+        height: 45vh;
+      }
+
+      .hero-right::after {
+        background: linear-gradient(to bottom, var(--cream) 0%, transparent 35%);
+      }
+
+      .section-intro,
+      .process-grid,
+      .bieres-intro,
+      .biere-feature,
+      .founders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-intro,
+      .section-bieres,
+      .section-process,
+      .founders,
+      .valeurs,
+      .pairing,
+      .cta-section {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+
+      .section-intro-text h2,
+      .section-bieres h2,
+      .section-process h2,
+      .founders h2,
+      .valeurs h2,
+      .bieres-intro-text h2,
+      .pairing h2,
+      .cta-section h2,
+      .timeline h2 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+      }
+
+      .intro-image-wrap img,
+      .founder-card img,
+      .biere-feature-image img {
+        height: auto;
+        max-height: 520px;
+        object-fit: cover;
+      }
+
+      .intro-image-wrap::before,
+      .founder-card::before {
+        display: none;
+      }
+
+      .process-images {
+        order: 2;
+      }
+
+      .process-steps {
+        order: 1;
+      }
+
+      .bieres-grid,
+      .valeurs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-hero {
+        height: 52vh;
+        min-height: 360px;
+      }
+
+      .page-hero-content {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .page-hero-content h1 {
+        font-size: clamp(2.8rem, 12vw, 4rem);
+      }
+
+      .page-hero-content .label {
+        letter-spacing: 0.22em;
+        line-height: 1.6;
+      }
+
+      .histoire-intro {
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+      }
+
+      .histoire-intro .lead {
+        font-size: 1.35rem;
+      }
+
+      .timeline-line {
+        left: 3rem;
+        top: 11rem;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        grid-template-columns: 50px 1fr;
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+      }
+
+      .timeline-empty {
+        display: none;
+      }
+
+      .timeline-year,
+      .timeline-item:nth-child(even) .timeline-year {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .timeline-content,
+      .timeline-item:nth-child(even) .timeline-content {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .intro-stats,
+      .biere-specs {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .biere-feature,
+      .biere-feature:last-child {
+        margin-bottom: 5rem;
+        padding-bottom: 5rem;
+      }
+
+      .biere-feature:nth-child(even) .biere-feature-image {
+        order: 0;
+      }
+
+      .biere-feature-content .biere-num {
+        font-size: 4rem;
+        margin-bottom: -1.5rem;
+      }
+
+      .biere-feature-content h2 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .biere-badge {
+        top: 1rem;
+        right: 1rem;
+        width: 74px;
+        height: 74px;
+      }
+
+      .filter-bar {
+        flex-wrap: wrap;
+      }
+
+      .filter-label {
+        width: 100%;
+        margin-right: 0;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-left,
+      .section-intro,
+      .section-bieres,
+      .section-process,
+      .page-hero-content,
+      .histoire-intro,
+      .timeline,
+      .founders,
+      .valeurs,
+      .bieres-intro,
+      .filter-bar,
+      .bieres-showcase,
+      .pairing,
+      .cta-section,
+      footer {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+
+      .hero-left {
+        padding-top: 4rem;
+      }
+
+      .hero-tagline,
+      .page-hero-content .label {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .hero-desc,
+      .section-intro-text p,
+      .bieres-intro-text p,
+      .histoire-intro p,
+      .founder-card p,
+      .valeur p,
+      .biere-desc {
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .hero-cta,
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        text-align: center;
+        padding: 0.95rem 1rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.16em;
+      }
+
+      .ornament-divider {
+        letter-spacing: 0.4rem;
+        padding: 2rem 0;
+      }
+
+      .process-step {
+        gap: 1rem;
+      }
+
+      .step-num {
+        font-size: 2rem;
+        min-width: 2.3rem;
+      }
+
+      .process-images {
+        grid-template-columns: 1fr;
+      }
+
+      .process-images img,
+      .process-images img:first-child {
+        height: auto;
+        max-height: 340px;
+      }
+
+      .page-hero {
+        height: 46vh;
+        min-height: 320px;
+      }
+
+      .timeline-line {
+        display: none;
+      }
+
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        display: block;
+      }
+
+      .timeline-year {
+        align-items: flex-start;
+        padding-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      .timeline-dot {
+        display: none;
+      }
+
+      .timeline-content {
+        padding: 1.5rem;
+      }
+
+      .intro-stats,
+      .biere-specs,
+      .pairing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        padding: 1.5rem;
+      }
+
+      .biere-type {
+        display: block;
+        line-height: 1.6;
+      }
+
+      .biere-type::after {
+        display: none;
+      }
+
+      .arome-tags {
+        gap: 0.4rem;
+      }
+
+      .cta-section img.logo-big,
+      .footer-brand img {
+        height: auto;
+        max-height: 110px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-brand p,
+      .footer-col,
+      .footer-bottom {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-col ul {
+        align-items: center;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -699,6 +1139,7 @@
         <div class="biere-badge">7.2<small>%</small></div>
       </div>
     </div>
+  </section>
 
   <!-- PAIRING -->
   <section class="pairing">
@@ -713,10 +1154,9 @@
         <h3>Viandes & Charcuteries</h3>
         <p>Notre Amalfi Blonde accompagne à merveille les charcuteries italiennes — mortadelle, bresaola, prosciutto crudo.</p>
       </div>
-      </div>
       <div class="pairing-card">
         <h3>Desserts & Chocolat</h3>
-        <p> Le Vizio Di Ambra crée un accord sublime avec le chocolat noir 70%, le tiramisu ou les gâteaux au café.</p>
+        <p>Le Vizio Di Ambra crée un accord sublime avec le chocolat noir 70%, le tiramisu ou les gâteaux au café.</p>
       </div>
     </div>
   </section>
