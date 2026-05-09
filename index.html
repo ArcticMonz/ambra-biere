@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMBRA — Bière Italo-Belge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --rose: #EA9999;
+      --cream: #FDF5E6;
+      --dark: #1a1208;
+      --brown: #6B4C1A;
+      --gold-light: #e8c95a;
+      --rose-muted: #c47e7e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark);
+      font-family: 'Cormorant Garamond', serif;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 245, 230, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 5rem 7rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tagline {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--rose-muted);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      color: var(--gold);
+      line-height: 1.05;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      animation: fadeUp 1s ease 0.15s both;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--brown);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #5a3e1b;
+      max-width: 380px;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 1s ease 0.45s both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1.5rem;
+      animation: fadeUp 1s ease 0.6s both;
+    }
+
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--brown);
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--rose);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--rose);
+      color: white;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      animation: zoomIn 1.5s ease both;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--cream) 0%, transparent 30%);
+    }
+
+    .hero-ornament {
+      position: absolute;
+      bottom: 3rem;
+      left: 7rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--rose-muted);
+      letter-spacing: 0.1em;
+      animation: fadeUp 1s ease 0.75s both;
+    }
+
+    .scroll-line {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--rose-muted);
+      writing-mode: vertical-rl;
+      z-index: 10;
+      animation: fadeIn 2s ease 1s both;
+    }
+
+    .scroll-line::after {
+      content: '';
+      width: 1px;
+      height: 60px;
+      background: var(--gold);
+      animation: lineGrow 1.5s ease 1.2s both;
+    }
+
+    /* DIVIDER */
+    .ornament-divider {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--gold);
+      font-size: 1.5rem;
+      letter-spacing: 1rem;
+      opacity: 0.5;
+    }
+
+    /* SECTION: INTRO */
+    .section-intro {
+      padding: 8rem 7rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      background: var(--cream);
+    }
+
+    .section-intro-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .section-intro-text p {
+      font-size: 1.15rem;
+      line-height: 2;
+      color: #5a3e1b;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-intro-text .italic-quote {
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--rose-muted);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .intro-image-wrap {
+      position: relative;
+    }
+
+    .intro-image-wrap img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+    }
+
+    .intro-image-wrap::before {
+      content: '';
+      position: absolute;
+      top: -1.5rem;
+      left: -1.5rem;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      border: 1px solid var(--gold);
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    /* SECTION: BIÈRES HIGHLIGHT */
+    .section-bieres {
+      padding: 8rem 7rem;
+      background: linear-gradient(135deg, #1a1208 0%, #2d1f0a 50%, #1a1208 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-bieres::before {
+      content: 'AMBRA';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-size: 18rem;
+      color: rgba(212, 175, 55, 0.03);
+      font-weight: 700;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .section-bieres h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-bieres .subtitle {
+      text-align: center;
+      font-style: italic;
+      color: var(--rose);
+      font-size: 1.2rem;
+      margin-bottom: 5rem;
+    }
+
+    .bieres-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .biere-card {
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .biere-card:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--gold);
+      transform: translateY(-8px);
+    }
+
+    .biere-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .biere-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .biere-card .type {
+      font-style: italic;
+      color: var(--rose);
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .biere-card p {
+      color: rgba(253, 245, 230, 0.7);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* SECTION: PROCESS */
+    .section-process {
+      padding: 8rem 7rem;
+      background: var(--cream);
+    }
+
+    .section-process h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-process .lead {
+      font-style: italic;
+      color: var(--rose-muted);
+      font-size: 1.2rem;
+      margin-bottom: 5rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .process-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .process-images img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .process-images img:first-child {
+      grid-column: 1 / -1;
+      height: 300px;
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      min-width: 3rem;
+    }
+
+    .step-content h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--brown);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-content p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #5a3e1b;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 5rem 7rem 3rem;
+      color: rgba(253, 245, 230, 0.6);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .footer-brand img {
+      height: 80px;
+      margin-bottom: 1.5rem;
+      filter: brightness(0.9);
+    }
+
+    .footer-brand p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-col a {
+      color: rgba(253, 245, 230, 0.6);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(253, 245, 230, 0.3);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.1em;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(1.1); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes lineGrow {
+      from { height: 0; }
+      to { height: 60px; }
+    }
+
+    /* LOGO BADGE */
+    .logo-badge {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+      display: none;
+    }
+
+    /* BANNER */
+    .banner {
+      background: var(--gold);
+      padding: 1rem;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--dark);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANNER -->
+  <div class="banner">BIÈRE ARTISANALE ITALO-BELGE — BRASSÉE AVEC PASSION</div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">AMBRA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="bieres.html">Nos Bières</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tagline">Brasserie Artisanale · Fondée avec Passion</p>
+      <h1 class="hero-title">L'Art de<br>Brasser<br>l'exeption</h1>
+      <p class="hero-subtitle">Bière Italo-Belge</p>
+      <p class="hero-desc">Là où la tradition brassicole belge rencontre la passion méditerranéenne italienne. Chaque gorgée d'Ambra raconte une histoire de deux cultures réunies par l'amour du houblon et du savoir-faire.</p>
+      <div class="hero-cta">
+        <a href="bieres.html" class="btn-primary">Découvrir nos Bières</a>
+        <a href="histoire.html" class="btn-secondary">Notre Histoire</a>
+      </div>
+      <p class="hero-ornament">— L'alliance parfaite de deux terroirs</p>
+    </div>
+    <div class="hero-right">
+      <img src="images/beer-glass.jpg" alt="Bière Ambra versée dans un verre élégant">
+      <div class="scroll-line">Défiler</div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="ornament-divider">✦ ✦ ✦</div>
+
+  <!-- INTRO -->
+  <section class="section-intro">
+    <div class="section-intro-text">
+      <h2>Deux Âmes,<br>Une Bière</h2>
+      <p class="italic-quote">« Ambra » — le mot qui évoque la chaleur dorée de l'ambre, couleur de nos bières et symbole de notre fusion culturelle. »</p>
+      <p>Née de la rencontre entre un brasseur belge passionné et un artisan italien amoureux de sa terre, Ambra est bien plus qu'une bière. C'est un voyage sensoriel qui traverse les Alpes pour unir deux grandes traditions brassicoles.</p>
+      <p>Nos ingrédients soigneusement sélectionnés — houblons belges d'exception, malts italiens de caractère — créent des profils aromatiques uniques que vous ne trouverez nulle part ailleurs.</p>
+      <a href="histoire.html" class="btn-primary" style="margin-top:1rem; display:inline-block;">Lire notre Histoire</a>
+    </div>
+    <div class="intro-image-wrap">
+      <img src="images/copper-tanks.jpg" alt="Cuves en cuivre de la brasserie Ambra">
+    </div>
+  </section>
+
+    <!-- PROCESS -->
+  <section class="section-process">
+    <h2>Notre Savoir-Faire</h2>
+    <p class="lead">De la graine à la gorgée, un processus d'excellence</p>
+    <div class="process-grid">
+      <div class="process-images">
+        <img src="images/fermentation-tanks.jpg" alt="Cuves de fermentation modernes">
+        <img src="images/stainless-tanks.jpg" alt="Tanks en inox">
+        <img src="images/copper-tanks.jpg" alt="Équipement brassicole">
+      </div>
+      <div class="process-steps">
+        <div class="process-step">
+          <span class="step-num">01</span>
+          <div class="step-content">
+            <h4>Sélection des Ingrédients</h4>
+            <p>Nous sélectionnons avec soin les meilleurs houblons belges et les malts italiens pour créer notre mélange exclusif.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">02</span>
+          <div class="step-content">
+            <h4>Le Brassage Artisanal</h4>
+            <p>Dans nos cuves en cuivre traditionnelles, chaque brassin est suivi à la main pour préserver les arômes délicats.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">03</span>
+          <div class="step-content">
+            <h4>Fermentation Lente</h4>
+            <p>Une fermentation patiente à température contrôlée développe la complexité aromatique unique de chaque cuvée.</p>
+          </div>
+        </div>
+        <div class="process-step">
+          <span class="step-num">04</span>
+          <div class="step-content">
+            <h4>Affinage & Dégustation</h4>
+            <p>Chaque lot est goûté par notre maître brasseur avant d'être embouteillé, garantissant une qualité irréprochable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-secondary.jpg" alt="Ambra Logo">
+        <p>Brasserie artisanale née de la fusion entre deux grandes traditions brassicoles européennes. Chaque bière est une œuvre d'amour.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="histoire.html">Notre Histoire</a></li>
+          <li><a href="bieres.html">Nos Bières</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">info@ambra-biere.com</a></li>
+          <li><a href="#">Salerno, Italie</a></li>
+          <li><a href="#">Namur, Belgique</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AMBRA — Bière Italo-Belge. Tous droits réservés. · L'abus d'alcool est dangereux pour la santé.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nos Bières — AMBRA Bière Italo-Belge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --rose: #EA9999;
+      --cream: #FDF5E6;
+      --dark: #1a1208;
+      --brown: #6B4C1A;
+      --gold-light: #e8c95a;
+      --rose-muted: #c47e7e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark);
+      font-family: 'Cormorant Garamond', serif;
+      overflow-x: hidden;
+    }
+
+    .banner {
+      background: var(--gold);
+      padding: 1rem;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--dark);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.2rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 245, 230, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brown);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* PAGE HERO */
+    .page-hero {
+      height: 60vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .page-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26,18,8,0.95) 0%, rgba(26,18,8,0.4) 60%, transparent 100%);
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 5rem 7rem;
+    }
+
+    .page-hero-content .label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--rose);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .page-hero-content h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 4rem;
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    /* INTRO */
+    .bieres-intro {
+      padding: 6rem 7rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .bieres-intro-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .bieres-intro-text p {
+      font-size: 1.15rem;
+      line-height: 2;
+      color: #5a3e1b;
+      margin-bottom: 1.2rem;
+    }
+
+    .intro-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 2rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      background: rgba(212, 175, 55, 0.03);
+    }
+
+    .stat-num {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--brown);
+      font-style: italic;
+    }
+
+    /* FILTER */
+    .filter-bar {
+      padding: 3rem 7rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--brown);
+      margin-right: 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.5rem;
+      background: transparent;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--brown);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+    }
+
+    /* BIERE CARDS */
+    .bieres-showcase {
+      padding: 6rem 7rem;
+    }
+
+    .biere-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      margin-bottom: 8rem;
+      padding-bottom: 8rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .biere-feature:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .biere-feature:nth-child(even) .biere-feature-image {
+      order: -1;
+    }
+
+    .biere-feature-image {
+      position: relative;
+    }
+
+    .biere-feature-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .biere-badge {
+      position: absolute;
+      top: -1.5rem;
+      right: -1.5rem;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .biere-badge small {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+
+    .biere-feature-content .biere-num {
+      font-family: 'Cinzel', serif;
+      font-size: 5rem;
+      color: var(--gold);
+      opacity: 0.1;
+      line-height: 1;
+      margin-bottom: -2rem;
+    }
+
+    .biere-feature-content h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .biere-type {
+      font-style: italic;
+      color: var(--rose-muted);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .biere-type::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rose);
+      opacity: 0.3;
+    }
+
+    .biere-desc {
+      font-size: 1.15rem;
+      line-height: 2;
+      color: #5a3e1b;
+      margin-bottom: 2.5rem;
+    }
+
+    .biere-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .spec {
+      text-align: center;
+      padding: 1.2rem 0.5rem;
+      background: rgba(212, 175, 55, 0.06);
+      border-top: 2px solid var(--gold);
+    }
+
+    .spec-val {
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .spec-key {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--brown);
+      text-transform: uppercase;
+    }
+
+    .aromes {
+      margin-bottom: 2rem;
+    }
+
+    .aromes-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--brown);
+      margin-bottom: 0.8rem;
+    }
+
+    .arome-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .arome-tag {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid var(--rose);
+      color: var(--rose-muted);
+      font-style: italic;
+      font-size: 0.85rem;
+      border-radius: 20px;
+    }
+
+    /* PAIRING */
+    .pairing {
+      padding: 7rem 7rem;
+      background: var(--dark);
+    }
+
+    .pairing h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .pairing .subtitle {
+      text-align: center;
+      color: var(--rose);
+      font-style: italic;
+      margin-bottom: 4rem;
+    }
+
+    .pairing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .pairing-card {
+      text-align: center;
+      padding: 2rem 1rem;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      transition: border-color 0.3s;
+    }
+
+    .pairing-card:hover {
+      border-color: var(--gold);
+    }
+
+    .pairing-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+
+    .pairing-card h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .pairing-card p {
+      color: rgba(253, 245, 230, 0.6);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* CTA */
+    .cta-section {
+      padding: 8rem 7rem;
+      text-align: center;
+      background: linear-gradient(135deg, #f5e8d0, var(--cream));
+    }
+
+    .cta-section img.logo-big {
+      height: 150px;
+      margin: 0 auto 3rem;
+      display: block;
+    }
+
+    .cta-section h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      color: var(--brown);
+      font-style: italic;
+      margin-bottom: 3rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      padding: 5rem 7rem 3rem;
+      color: rgba(253, 245, 230, 0.6);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .footer-brand img {
+      height: 80px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 300px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .footer-col a {
+      color: rgba(253, 245, 230, 0.6);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(253, 245, 230, 0.3);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.1em;
+    }
+
+    .ornament-divider {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--gold);
+      font-size: 1.5rem;
+      letter-spacing: 1rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">BIÈRE ARTISANALE ITALO-BELGE — BRASSÉE AVEC PASSION</div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">AMBRA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="histoire.html">Notre Histoire</a></li>
+      <li><a href="bieres.html" class="active">Nos Bières</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <img src="images/beer-glass.jpg" alt="Bière Ambra">
+    <div class="page-hero-content">
+      <span class="label">Artisanat · Passion · Excellence</span>
+      <h1>Nos<br>Bières</h1>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="bieres-intro">
+    <div class="bieres-intro-text">
+      <h2>Une Gamme<br>d'Exception</h2>
+      <p>Chaque bière Ambra est le fruit d'une réflexion approfondie sur les arômes, les textures et les équilibres. Nous brassons en petits lots pour garantir une qualité irréprochable à chaque bouteille.</p>
+      <p>De la légèreté citronnée de notre Blonde à la profondeur torréfiée de notre Noire, toute la gamme Ambra explore les frontières entre tradition belge et âme méditerranéenne.</p>
+    </div>
+    <div class="intro-stats">
+      <div class="stat">
+        <span class="stat-num">2</span>
+        <span class="stat-label">fondateurs</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Cuvées saisonnières</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Ingrédients naturels</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">saveurs enveloppantes</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SHOWCASE -->
+  <section class="bieres-showcase">
+
+    <!-- BIÈRE 1 -->
+    <div class="biere-feature">
+      <div class="biere-feature-content">
+        <div class="biere-num">01</div>
+        <h2>Amalfi Blonde</h2>
+        <div class="biere-type">Blonde Italo-Belge · Collection Permanente</div>
+        <p class="biere-desc">Légère et rafraîchissante, notre blonde dévoile des arômes floraux de houblon belge avec une touche agrumate caractéristique de nos citrons amalfitains.</p>
+        <div class="biere-specs">
+          <div class="spec">
+            <span class="spec-val">5.8°</span>
+            <span class="spec-key">Alcool</span>
+          </div>
+          <div class="spec">
+            <span class="spec-val">22</span>
+            <span class="spec-key">IBU</span>
+          </div>
+          <div class="spec">
+            <span class="spec-val">4 EBC</span>
+            <span class="spec-key">Couleur</span>
+          </div>
+        </div>
+        <div class="aromes">
+          <p class="aromes-title">PROFIL AROMATIQUE</p>
+          <div class="arome-tags">
+            <span class="arome-tag">Floral</span>
+            <span class="arome-tag">citronnée</span>
+            <span class="arome-tag">Agrumes</span>
+            <span class="arome-tag">Herbes</span>
+          </div>
+        </div>
+      </div>
+      <div class="biere-feature-image">
+        <img src="images/beer-glass.jpg" alt="Ambra Blonde">
+        <div class="biere-badge">5.8<small>%</small></div>
+      </div>
+    </div>
+
+    <!-- BIÈRE 2 -->
+    <div class="biere-feature">
+      <div class="biere-feature-image">
+        <img src="images/copper-tanks.jpg" alt="Ambra Dorée - Brasserie">
+        <div class="biere-badge">6.5<small>%</small></div>
+      </div>
+      <div class="biere-feature-content">
+        <div class="biere-num">02</div>
+        <h2>Ambra Dorée</h2>
+        <div class="biere-type">Ambrée Italo-Belge · Cuvée Signature</div>
+        <p class="biere-desc">L'âme de notre brasserie. Une ambrée complexe où la noblesse de la tradition belge rencontre l'intensité aromatique du café torréfié.</p>
+        <div class="biere-specs">
+          <div class="spec">
+            <span class="spec-val">6.5°</span>
+            <span class="spec-key">Alcool</span>
+          </div>
+          <div class="spec">
+            <span class="spec-val">35</span>
+            <span class="spec-key">IBU</span>
+          </div>
+          <div class="spec">
+            <span class="spec-val">18 EBC</span>
+            <span class="spec-key">Couleur</span>
+          </div>
+        </div>
+        <div class="aromes">
+          <p class="aromes-title">PROFIL AROMATIQUE</p>
+          <div class="arome-tags">
+            <span class="arome-tag">Café</span>
+            <span class="arome-tag">malt</span>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIÈRE 3 -->
+    <div class="biere-feature">
+      <div class="biere-feature-content">
+        <div class="biere-num">03</div>
+        <h2>Il Vizio di Ambra</h2>
+        <div class="biere-type"> Italo-Belge · Collection Permanente</div>
+        <p class="biere-desc">L'élégance du dessert au verre : une symphonie enveloppante de doux mascarpone, de fragrance biscuitée et d'une touche de cacao amer raffiné.</p>
+        <div class="biere-specs">
+          <div class="spec">
+            <span class="spec-val">7.2°</span>
+            <span class="spec-key">Alcool</span>
+          </div>
+          <div class="spec">
+            <span class="spec-val">45</span>
+            <span class="spec-key">IBU</span>
+          </div>
+          <div class="spec">
+            <span class="spec-val"> 50 EBC</span>
+            <span class="spec-key">Couleur</span>
+          </div>
+        </div>
+        <div class="aromes">
+          <p class="aromes-title">PROFIL AROMATIQUE</p>
+          <div class="arome-tags">
+            <span class="arome-tag">Café</span>
+            <span class="arome-tag">Cacao</span>
+            <span class="arome-tag">mascarpone</span>
+          </div>
+        </div>
+      </div>
+      <div class="biere-feature-image">
+        <img src="images/fermentation-tanks.jpg" alt="Brasserie Ambra Noire">
+        <div class="biere-badge">7.2<small>%</small></div>
+      </div>
+    </div>
+
+  <!-- PAIRING -->
+  <section class="pairing">
+    <h2>Accords Mets & Bières</h2>
+    <p class="subtitle">La bière, comme le vin, se marie aux mets</p>
+    <div class="pairing-grid">
+      <div class="pairing-card">
+        <h3>Fromages Affinés</h3>
+        <p>L'Ambra Dorée se marie parfaitement avec les fromages à pâte dure — Parmigiano, Comté, Pecorino stagionato.</p>
+      </div>
+      <div class="pairing-card">
+        <h3>Viandes & Charcuteries</h3>
+        <p>Notre Amalfi Blonde accompagne à merveille les charcuteries italiennes — mortadelle, bresaola, prosciutto crudo.</p>
+      </div>
+      </div>
+      <div class="pairing-card">
+        <h3>Desserts & Chocolat</h3>
+        <p> Le Vizio Di Ambra crée un accord sublime avec le chocolat noir 70%, le tiramisu ou les gâteaux au café.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <img src="images/logo-primary.jpg" alt="Ambra Logo" class="logo-big">
+    <h2>Prêt à Découvrir Ambra ?</h2>
+    <p>Rejoignez notre communauté de passionnés et recevez nos actualités, nouvelles cuvées et invitations en avant-première.</p>
+    <a href="histoire.html" class="btn-primary">Notre Histoire</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-secondary.jpg" alt="Ambra Logo">
+        <p>Brasserie artisanale née de la fusion entre deux grandes traditions brassicoles européennes. Chaque bière est une œuvre d'amour.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="histoire.html">Notre Histoire</a></li>
+          <li><a href="bieres.html">Nos Bières</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">info@ambra-biere.com</a></li>
+          <li><a href="#">Salerno, Italie</a></li>
+          <li><a href="#">Namur, Belgique</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 AMBRA — Bière Italo-Belge. Tous droits réservés. · L'abus d'alcool est dangereux pour la santé.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Filter button interaction
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
