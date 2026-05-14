@@ -1,985 +1,128 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notre Histoire — AMBRA Bière Italo-Belge</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #D4AF37;
-      --rose: #EA9999;
-      --cream: #FDF5E6;
-      --dark: #1a1208;
-      --brown: #6B4C1A;
-      --gold-light: #e8c95a;
-      --rose-muted: #c47e7e;
-    }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notre Histoire — AMBRA Bière Italo-Belge</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Cinzel:wght@400;600;700&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet"/><link href="css/histoire.css" rel="stylesheet"/>
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--cream);
-      color: var(--dark);
-      font-family: 'Cormorant Garamond', serif;
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.2rem 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(253, 245, 230, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
-      color: var(--gold);
-      letter-spacing: 0.3em;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--brown);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-
-    /* PAGE HERO */
-    .page-hero {
-      height: 60vh;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-
-    .page-hero img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-    }
-
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26,18,8,0.9) 0%, rgba(26,18,8,0.3) 60%, transparent 100%);
-    }
-
-    .page-hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 5rem 7rem;
-    }
-
-    .page-hero-content .label {
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.4em;
-      color: var(--rose);
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .page-hero-content h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 4rem;
-      color: var(--gold);
-      font-weight: 700;
-      line-height: 1.1;
-    }
-
-    /* BANNER */
-    .banner {
-      background: var(--gold);
-      padding: 1rem;
-      text-align: center;
-      font-family: 'Cinzel', serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.4em;
-      color: var(--dark);
-    }
-
-    /* INTRO */
-    .histoire-intro {
-      padding: 7rem 7rem;
-      max-width: 900px;
-    }
-
-    .histoire-intro .lead {
-      font-size: 1.6rem;
-      line-height: 1.8;
-      color: var(--brown);
-      font-style: italic;
-      margin-bottom: 2rem;
-    }
-
-    .histoire-intro p {
-      font-size: 1.15rem;
-      line-height: 2;
-      color: #5a3e1b;
-    }
-
-    /* TIMELINE */
-    .timeline {
-      padding: 5rem 7rem;
-      background: var(--dark);
-      position: relative;
-    }
-
-    .timeline h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 5rem;
-      text-align: center;
-    }
-
-    .timeline-line {
-      position: absolute;
-      left: 50%;
-      top: 12rem;
-      bottom: 5rem;
-      width: 1px;
-      background: linear-gradient(to bottom, var(--gold), var(--rose), var(--gold));
-      opacity: 0.3;
-      transform: translateX(-50%);
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 1fr 80px 1fr;
-      gap: 0;
-      margin-bottom: 5rem;
-      align-items: start;
-    }
-
-    .timeline-item:nth-child(even) .timeline-content {
-      grid-column: 3;
-      grid-row: 1;
-    }
-
-    .timeline-item:nth-child(even) .timeline-empty {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .timeline-content {
-      padding: 2rem;
-      background: rgba(212, 175, 55, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.15);
-    }
-
-    .timeline-content h3 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline-content p {
-      color: rgba(253, 245, 230, 0.75);
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-
-    .timeline-year {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      padding-top: 1.5rem;
-    }
-
-    .timeline-year span {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .timeline-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--gold);
-      border: 3px solid var(--dark);
-      box-shadow: 0 0 0 1px var(--gold);
-    }
-
-    /* FOUNDERS */
-    .founders {
-      padding: 8rem 7rem;
-      background: var(--cream);
-    }
-
-    .founders h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .founders .subtitle {
-      font-style: italic;
-      color: var(--rose-muted);
-      font-size: 1.2rem;
-      margin-bottom: 5rem;
-    }
-
-    .founders-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .founder-card {
-      position: relative;
-    }
-
-    .founder-card img {
-      width: 100%;
-      height: 450px;
-      object-fit: cover;
-      margin-bottom: 2rem;
-    }
-
-    .founder-card::before {
-      content: '';
-      position: absolute;
-      top: -1rem;
-      right: -1rem;
-      width: 60px;
-      height: 60px;
-      border-top: 2px solid var(--gold);
-      border-right: 2px solid var(--gold);
-    }
-
-    .founder-name {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      margin-bottom: 0.3rem;
-    }
-
-    .founder-role {
-      font-style: italic;
-      color: var(--rose-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.2rem;
-      letter-spacing: 0.05em;
-    }
-
-    .founder-card p {
-      font-size: 1.05rem;
-      line-height: 1.9;
-      color: #5a3e1b;
-    }
-
-    /* VALEURS */
-    .valeurs {
-      padding: 8rem 7rem;
-      background: linear-gradient(135deg, #f5e8d0 0%, var(--cream) 50%, #f5e8d0 100%);
-    }
-
-    .valeurs h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-
-    .valeurs-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 3rem;
-    }
-
-    .valeur {
-      text-align: center;
-      padding: 3rem 2rem;
-      border-top: 2px solid var(--gold);
-    }
-
-    .valeur-icon {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      display: block;
-    }
-
-    .valeur h3 {
-      font-family: 'Cinzel', serif;
-      color: var(--brown);
-      font-size: 1.1rem;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-    }
-
-    .valeur p {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #5a3e1b;
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark);
-      padding: 5rem 7rem 3rem;
-      color: rgba(253, 245, 230, 0.6);
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 4rem;
-      margin-bottom: 4rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .footer-brand img {
-      height: 80px;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-brand p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      max-width: 300px;
-    }
-
-    .footer-col h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .footer-col a {
-      color: rgba(253, 245, 230, 0.6);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color 0.3s;
-    }
-
-    .footer-col a:hover { color: var(--gold); }
-
-    .footer-bottom {
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(253, 245, 230, 0.3);
-      font-family: 'Cinzel', serif;
-      letter-spacing: 0.1em;
-    }
-
-    .ornament-divider {
-      text-align: center;
-      padding: 3rem 0;
-      color: var(--gold);
-      font-size: 1.5rem;
-      letter-spacing: 1rem;
-      opacity: 0.5;
-    }
-
-    .btn-primary {
-      padding: 1rem 2.5rem;
-      background: var(--gold);
-      color: var(--dark);
-      font-family: 'Cinzel', serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
-
-
-    /* RESPONSIVE FIXES */
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a, button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    @media (max-width: 1180px) {
-      nav {
-        padding: 1rem 2rem;
-      }
-
-      .nav-links {
-        gap: 1.5rem;
-      }
-
-      .hero-left,
-      .section-intro,
-      .section-bieres,
-      .section-process,
-      .page-hero-content,
-      .histoire-intro,
-      .timeline,
-      .founders,
-      .valeurs,
-      .bieres-intro,
-      .filter-bar,
-      .bieres-showcase,
-      .pairing,
-      .cta-section,
-      footer {
-        padding-left: 3rem;
-        padding-right: 3rem;
-      }
-
-      .section-intro,
-      .bieres-intro,
-      .biere-feature {
-        gap: 3rem;
-      }
-
-      .pairing-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .banner {
-        padding: 0.8rem 1rem;
-        font-size: 0.6rem;
-        letter-spacing: 0.22em;
-        line-height: 1.6;
-      }
-
-      nav {
-        position: sticky;
-        top: 0;
-        flex-direction: column;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1rem 1.25rem;
-      }
-
-      .nav-logo {
-        font-size: 1.35rem;
-        letter-spacing: 0.22em;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.8rem 1.2rem;
-      }
-
-      .nav-links a {
-        font-size: 0.68rem;
-        letter-spacing: 0.14em;
-      }
-
-      .hero {
-        min-height: auto;
-        grid-template-columns: 1fr;
-      }
-
-      .hero-left {
-        padding: 5rem 2rem 3rem;
-        text-align: center;
-        align-items: center;
-      }
-
-      .hero-title {
-        font-size: clamp(3rem, 12vw, 4.8rem);
-      }
-
-      .hero-desc {
-        max-width: 620px;
-      }
-
-      .hero-cta {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .hero-ornament,
-      .scroll-line {
-        display: none;
-      }
-
-      .hero-right {
-        min-height: 45vh;
-      }
-
-      .hero-right img {
-        height: 45vh;
-      }
-
-      .hero-right::after {
-        background: linear-gradient(to bottom, var(--cream) 0%, transparent 35%);
-      }
-
-      .section-intro,
-      .process-grid,
-      .bieres-intro,
-      .biere-feature,
-      .founders-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section-intro,
-      .section-bieres,
-      .section-process,
-      .founders,
-      .valeurs,
-      .pairing,
-      .cta-section {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-      }
-
-      .section-intro-text h2,
-      .section-bieres h2,
-      .section-process h2,
-      .founders h2,
-      .valeurs h2,
-      .bieres-intro-text h2,
-      .pairing h2,
-      .cta-section h2,
-      .timeline h2 {
-        font-size: clamp(2rem, 8vw, 2.6rem);
-      }
-
-      .intro-image-wrap img,
-      .founder-card img,
-      .biere-feature-image img {
-        height: auto;
-        max-height: 520px;
-        object-fit: cover;
-      }
-
-      .intro-image-wrap::before,
-      .founder-card::before {
-        display: none;
-      }
-
-      .process-images {
-        order: 2;
-      }
-
-      .process-steps {
-        order: 1;
-      }
-
-      .bieres-grid,
-      .valeurs-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .page-hero {
-        height: 52vh;
-        min-height: 360px;
-      }
-
-      .page-hero-content {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
-      }
-
-      .page-hero-content h1 {
-        font-size: clamp(2.8rem, 12vw, 4rem);
-      }
-
-      .page-hero-content .label {
-        letter-spacing: 0.22em;
-        line-height: 1.6;
-      }
-
-      .histoire-intro {
-        padding-top: 5rem;
-        padding-bottom: 4rem;
-      }
-
-      .histoire-intro .lead {
-        font-size: 1.35rem;
-      }
-
-      .timeline-line {
-        left: 3rem;
-        top: 11rem;
-      }
-
-      .timeline-item,
-      .timeline-item:nth-child(even) {
-        grid-template-columns: 50px 1fr;
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-      }
-
-      .timeline-empty {
-        display: none;
-      }
-
-      .timeline-year,
-      .timeline-item:nth-child(even) .timeline-year {
-        grid-column: 1;
-        grid-row: 1;
-      }
-
-      .timeline-content,
-      .timeline-item:nth-child(even) .timeline-content {
-        grid-column: 2;
-        grid-row: 1;
-      }
-
-      .intro-stats,
-      .biere-specs {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .biere-feature,
-      .biere-feature:last-child {
-        margin-bottom: 5rem;
-        padding-bottom: 5rem;
-      }
-
-      .biere-feature:nth-child(even) .biere-feature-image {
-        order: 0;
-      }
-
-      .biere-feature-content .biere-num {
-        font-size: 4rem;
-        margin-bottom: -1.5rem;
-      }
-
-      .biere-feature-content h2 {
-        font-size: clamp(2rem, 8vw, 2.5rem);
-      }
-
-      .biere-badge {
-        top: 1rem;
-        right: 1rem;
-        width: 74px;
-        height: 74px;
-      }
-
-      .filter-bar {
-        flex-wrap: wrap;
-      }
-
-      .filter-label {
-        width: 100%;
-        margin-right: 0;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero-left,
-      .section-intro,
-      .section-bieres,
-      .section-process,
-      .page-hero-content,
-      .histoire-intro,
-      .timeline,
-      .founders,
-      .valeurs,
-      .bieres-intro,
-      .filter-bar,
-      .bieres-showcase,
-      .pairing,
-      .cta-section,
-      footer {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-
-      .hero-left {
-        padding-top: 4rem;
-      }
-
-      .hero-tagline,
-      .page-hero-content .label {
-        font-size: 0.62rem;
-        letter-spacing: 0.18em;
-      }
-
-      .hero-subtitle {
-        font-size: 1.1rem;
-      }
-
-      .hero-desc,
-      .section-intro-text p,
-      .bieres-intro-text p,
-      .histoire-intro p,
-      .founder-card p,
-      .valeur p,
-      .biere-desc {
-        font-size: 1rem;
-        line-height: 1.75;
-      }
-
-      .hero-cta,
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-      }
-
-      .btn-primary,
-      .btn-secondary {
-        text-align: center;
-        padding: 0.95rem 1rem;
-        font-size: 0.68rem;
-        letter-spacing: 0.16em;
-      }
-
-      .ornament-divider {
-        letter-spacing: 0.4rem;
-        padding: 2rem 0;
-      }
-
-      .process-step {
-        gap: 1rem;
-      }
-
-      .step-num {
-        font-size: 2rem;
-        min-width: 2.3rem;
-      }
-
-      .process-images {
-        grid-template-columns: 1fr;
-      }
-
-      .process-images img,
-      .process-images img:first-child {
-        height: auto;
-        max-height: 340px;
-      }
-
-      .page-hero {
-        height: 46vh;
-        min-height: 320px;
-      }
-
-      .timeline-line {
-        display: none;
-      }
-
-      .timeline-item,
-      .timeline-item:nth-child(even) {
-        display: block;
-      }
-
-      .timeline-year {
-        align-items: flex-start;
-        padding-top: 0;
-        margin-bottom: 1rem;
-      }
-
-      .timeline-dot {
-        display: none;
-      }
-
-      .timeline-content {
-        padding: 1.5rem;
-      }
-
-      .intro-stats,
-      .biere-specs,
-      .pairing-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stat {
-        padding: 1.5rem;
-      }
-
-      .biere-type {
-        display: block;
-        line-height: 1.6;
-      }
-
-      .biere-type::after {
-        display: none;
-      }
-
-      .arome-tags {
-        gap: 0.4rem;
-      }
-
-      .cta-section img.logo-big,
-      .footer-brand img {
-        height: auto;
-        max-height: 110px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .footer-brand p,
-      .footer-col,
-      .footer-bottom {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .footer-col ul {
-        align-items: center;
-      }
-    }
-
-  </style>
 </head>
 <body>
-
-  <div class="banner">BIÈRE ARTISANALE ITALO-BELGE — BRASSÉE AVEC PASSION</div>
-
-  <nav>
-    <a href="index.html" class="nav-logo">AMBRA</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="histoire.html" class="active">Notre Histoire</a></li>
-      <li><a href="bieres.html">Nos Bières</a></li>
-    </ul>
-  </nav>
-
-  <!-- PAGE HERO -->
-  <section class="page-hero">
-    <img src="images/copper-tanks.jpg" alt="Cuves cuivrées Ambra">
-    <div class="page-hero-content">
-      <span class="label">Depuis les Alpes jusqu'à la Méditerranée</span>
-      <h1>Notre<br>Histoire</h1>
-    </div>
-  </section>
-
-  <!-- INTRO -->
-  <div class="histoire-intro">
-    <p class="lead">« Ambra est née d'une poignée de main entre deux passionnés, un belge et un italien, réunis par la même conviction : la grande bière n'a pas de frontières. »</p>
-    <p>Tout a commencé dans un petit appartement de Namur, il y a un an à peine. Un maître brasseur originaire de Salerne et un passionné de bières traditionnelles belges se sont rencontrés lors d'un festival de bières artisanales. Ce soir-là, ils ont réalisé que leur façon de concevoir la bière, bien que différente en apparence, partageait la même âme : l'obsession de la qualité, le respect de la tradition, et la soif d'innovation.</p>
-  </div>
-
-  <div class="ornament-divider">✦ ✦ ✦</div>
-
-  <!-- FOUNDERS -->
-  <section class="founders">
-    <h2>Les Fondateurs</h2>
-    <p class="subtitle">Deux hommes, une vision partagée</p>
-    <div class="founders-grid">
-      <div class="founder-card">
-        <img src="images/fermentation-tanks.jpg" alt="Marco - Fondateur">
-        <h3 class="founder-name">LE MAÎTRE BRASSEUR</h3>
-        <p class="founder-role">Co-fondateur · Salerne, Italie</p>
-        <p>Issu d'une famille de Salerne profondément attachée aux saveurs de son terroir, il a toujours baigné dans la culture de la fermentation. Après avoir étudié les sciences de la bière et parcouru l'Europe pour perfectionner sa technique, sa philosophie est devenue une évidence : respecter la matière première pour laisser parler la nature.</p>
-      </div>
-      <div class="founder-card">
-        <img src="images/stainless-tanks.jpg" alt="Luc - Fondateur">
-        <h3 class="founder-name">LE DIRECTEUR CRÉATIF</h3>
-        <p class="founder-role">Co-fondateur · Belgique</p>
-        <p>Ayant grandi littéralement entre les cuves et les barriques, il voue une passion viscérale à l'histoire et aux bières traditionnelles belges. Il apporte à Ambra toute son expertise des fermentations complexes et la sélection de houblons d'exception. Sa devise est claire : l'audace dans le respect des classiques.</p>
-      </div>
-    </div>
-  </section>
-
-   <!-- VALEURS -->
-  <section class="valeurs">
-         <h2>Nos Valeurs</h2>
-    <div class="valeurs-grid">
-      <div class="valeur">
-         <h3>Authenticité</h3>
-        <p>Chaque bière Ambra est brassée avec des ingrédients naturels, sans additifs ni arômes artificiels. La nature fait le travail, nous l'accompagnons.</p>
-      </div>
-      <div class="valeur">
-         <h3>Fusion Culturelle</h3>
-        <p>Nous croyons que la diversité enrichit. La rencontre des traditions belges et italiennes produit quelque chose d'unique et de plus grand que chaque culture seule.</p>
-      </div>
-      <div class="valeur">
-         <h3>Artisanat</h3>
-        <p>Chaque brassin est supervisé à la main. Nous refusons l'industrialisation qui sacrifierait la qualité à la quantité. Petits lots, grande passion.</p>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:4rem;">
-      <a href="bieres.html" class="btn-primary">Découvrir Nos Bières</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="images/logo-secondary.jpg" alt="Ambra Logo">
-        <p>Brasserie artisanale née de la fusion entre deux grandes traditions brassicoles européennes. Chaque bière est une œuvre d'amour.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigation</h4>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="histoire.html">Notre Histoire</a></li>
-          <li><a href="bieres.html">Nos Bières</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="#">info@ambra-biere.com</a></li>
-          <li><a href="#">Salerno, Italie</a></li>
-          <li><a href="#"> Namur, Belgique</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 AMBRA — Bière Italo-Belge. Tous droits réservés. · L'abus d'alcool est dangereux pour la santé.</p>
-    </div>
-  </footer>
-
+<div class="banner">BIÈRE ARTISANALE ITALO-BELGE — BRASSÉE AVEC PASSION</div>
+<nav>
+<a class="nav-logo" href="index.html">
+<img alt="Ambra Logo" src="images/logo-primary.png"/>
+      AMBRA
+    </a>
+<ul class="nav-links">
+<li><a href="index.html">Accueil</a></li>
+<li><a class="active" href="histoire.html">Notre Histoire</a></li>
+<li><a href="bieres.html">Nos Bières</a></li>
+</ul>
+</nav>
+<section class="page-hero">
+<img alt="Cuves cuivrées Ambra" src="images/copper-tanks.jpg"/>
+<div class="page-hero-content">
+<span class="label">Depuis les Alpes jusqu'à la Méditerranée</span>
+<h1>Notre<br/>Histoire</h1>
+</div>
+</section>
+<div class="histoire-intro">
+<p class="lead">« Ambra est née d'une poignée de main entre due passionnés, un belge et un italien, réunis par la même conviction : la grande bière n'a pas de frontières. »</p>
+<p>Tout a commencé dans un petit appartement de Namur, il y a un an à peine. Un maître brasseur originaire de Salerne et un passionné de bières traditionnelles belges se sont rencontrés lors d'un festival de bières artisanales. Ce soir-là, ils ont réalisé que leur façon de concevoir la bière, bien que différente en apparence, partageait la mème âme : l'obsession de la qualité, le respect de la tradition, e la soif d'innovation.</p>
+</div>
+<section class="founders">
+<h2>Les Fondateurs</h2>
+<p class="subtitle">Deux hommes, una vision partagée</p>
+<div class="founders-grid">
+<div class="founder-card">
+<img alt="Marco - Fondateur" src="images/fermentation-tanks.jpg"/>
+<h3 class="founder-name">LE MAÎTRE BRASSEUR</h3>
+<p class="founder-role">Co-fondateur · Salerne, Italie</p>
+<p>Issu d’une famille de Salerne profondément attachée aux saveurs et aux traditions italiennes, il grandit dans un univers où la fermentation et le partage occupent una place centrale. Après un master en hôtellerie à Milan, il choisit de se spécialiser dans l’art brassicole afin d’honorer ses racines. Au fil de ses voyages en Europe et de ses découvertes des cultures brassicoles, il rencontre notre directeur créatif e ensemble décident de fusionner leur passione. </p>
+</div>
+<div class="founder-card">
+<img alt="Luc - Fondateur" src="images/stainless-tanks.jpg"/>
+<h3 class="founder-name">LE DIRECTEUR CRÉATIF</h3>
+<p class="founder-role">Co-fondateur · Belgique</p>
+<p>Bercé par la culture belge où la bière fait parti des traditions et des moments de convivialité, le directeur créatif a grandi avec une réelle passion pour cet univers. Diplômé d’un master en marketing, il apporte à Ambra une vision moderne mêlant identité de marque, créativitè e authenticitè. Inspirés par le savoir-faire belge et l’élégance italienne, à due, ils imaginent une marque capable de réunir due cultures autour d’une même passione : la bière. </p>
+</div>
+</div>
+</section>
+<div class="ornament-divider">✦ ✦ ✦</div>
+<section class="logo-section">
+<div class="logo-container">
+<div class="logo-text">
+<h2>Notre Logo</h2>
+<p class="lead">Notre logo représente l'union parfaite entre la riche tradition brassicole belge et la chaleur élégante de l'Italie. Chaque élément raconte l'histoire de notre âme italo-belge.</p>
+<h3>Les Couleurs</h3>
+<p><strong>Or Ambré :</strong> Rappelle la robe de notre bière e le nom « Ambra », apportant lumière et prestige au design.</p>
+<p><strong>Rose Poudré :</strong> Utilisé pour les détails botaniques, il offre un contraste élégant et délicatement rétro, rendant la palette unique e mémorable.</p>
+<h3>Le Design</h3>
+<p><strong>L'Écusson Central :</strong> Divisé en due pour illustrer notre double héritage. À gauche, le lion rampant au verre de bière rend hommage à la fière culture brassicole belge ; à droite, une arche ensoleillée et une branche d'olivier évoquent la tradition e la chaleur de l'Italie.</p>
+<p><strong>La Nature et l'Excellence :</strong> L'écusson est enlacé d'une couronne de houblon et de blé, symbole de la pureté de nos ingrédients artisanaux. L'ensemble est surmonté d'une couronne, emblème de très haute qualité.</p>
+</div>
+<div class="logo-image-wrapper">
+<img alt="Logo Ambra" src="images/logo-primary.png"/>
+</div>
+</div>
+</section>
+<section class="valeurs">
+<h2>Nos Valeurs</h2>
+<div class="valeurs-grid">
+<div class="valeur">
+<h3>Authenticité</h3>
+<p>Chaque bière Ambra est brassée avec des ingrédients naturels, sans additifs ni arômes artificiels. La nature fait le travail, nous l'accompagnons.</p>
+</div>
+<div class="valeur">
+<h3>Fusion Culturelle</h3>
+<p>Nous croyons que la diversité enrichit. La rencontre des traditions belges e italiennes produit quelque chose d'unique e de plus grand que chaque culture seule.</p>
+</div>
+<div class="valeur">
+<h3>Artisanat</h3>
+<p>Chaque brassin est supervisé à la main. Nous refusons l'industrialisation qui sacrifierait la qualité à la quantité. Petits lots, grande passione.</p>
+</div>
+</div>
+<div class="center-cta">
+<a class="btn-primary" href="bieres.html">Découvrir Nos Bières</a>
+</div>
+</section>
+<footer>
+<div class="footer-top">
+<div class="footer-brand">
+<img alt="Ambra Logo" src="images/logo-secondary.jpg"/>
+<p>Brasserie artisanale née de la fusion entre deux grandes traditions brassicoles européennes. Chaque bière est une œuvre d'amour.</p>
+</div>
+<div class="footer-col">
+<h4>Navigation</h4>
+<ul>
+<li><a href="index.html">Accueil</a></li>
+<li><a href="histoire.html">Notre Histoire</a></li>
+<li><a href="bieres.html">Nos Bières</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contact</h4>
+<ul>
+<li><a href="mailto:info@ambra-biere.com">info@ambra-biere.com</a></li>
+<li><a href="#">Salerne, Italie</a></li>
+<li><a href="#">Namur, Belgique</a></li>
+<li><a href="https://www.instagram.com/birraambra" target="_blank">Instagram / TikTok: @birraambra</a></li>
+<li class="newsletter-list-item">
+<span class="newsletter-title">Newsletter</span>
+<form class="newsletter-form" onsubmit="alert('Merci pour votre inscription ! (Simulé)'); return false;">
+<input placeholder="Votre adresse email" required="" type="email"/>
+<button type="submit">S'inscrire</button>
+</form>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 AMBRA — Bière Italo-Belge. Tous droits réservés. · L'abus d'alcool est dangereux pour la santé.</p>
+</div>
+</footer>
 </body>
 </html>
