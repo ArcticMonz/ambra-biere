@@ -986,4 +986,65 @@ nav {
     font-size: 2rem;
     min-width: 2.4rem;
   }
+
+  .social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.footer-col .social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(253, 245, 230, 0.78);
+  font-size: 0.82rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.footer-col .social-link:hover,
+.footer-col .social-link:focus-visible {
+  color: var(--gold);
+  outline: none;
+}
+
+.footer-col .social-icon {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  max-width: 16px;
+  min-height: 16px;
+  max-height: 16px;
+  display: inline-block;
+  flex: 0 0 16px;
+  color: currentColor;
+}
+
+.footer-col .social-icon rect,
+.footer-col .social-icon circle,
+.footer-col .social-icon path {
+  vector-effect: non-scaling-stroke;
+}
+
+@media (max-width: 640px) {
+  .social-links {
+    gap: 0.5rem;
+  }
+
+  .footer-col .social-link {
+    font-size: 0.78rem;
+  }
+
+  .footer-col .social-icon {
+    width: 15px !important;
+    height: 15px !important;
+    min-width: 15px;
+    max-width: 15px;
+    min-height: 15px;
+    max-height: 15px;
+    flex-basis: 15px;
+  }
+}
 }
